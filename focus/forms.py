@@ -7,9 +7,9 @@ class LoginForm(forms.Form):
     pwd = forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'pwd', 'placeholder': 'Password'}))
 
+
 class RegisterForm(forms.Form):
-    username = forms.CharField(label='username', max_length=100,\
-                               widget=forms.TextInput(attrs={'id':'username', 'onblur': 'authentication()'}))
+    username = forms.CharField(label='username', max_length=100,widget=forms.TextInput(attrs={'id':'username', 'onblur': 'authentication()'}))
     email = forms.EmailField()
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
@@ -18,8 +18,10 @@ class RegisterForm(forms.Form):
 class SetInfoForm(forms.Form):
     username = forms.CharField()
 
+
 class CommmentForm(forms.Form):
     comment = forms.CharField(label='', widget=forms.Textarea(attrs={'cols': '60', 'rows': '6' }))
+
 
 class SearchForm(forms.Form):
     keyword = forms.CharField(widget=forms.TextInput)
