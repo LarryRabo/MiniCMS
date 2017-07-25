@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <title>PYTHON WORLD</title>
+    <title>Python World</title>
 	{% load staticfiles %}
 	<script src="{% static "csrf.js" %}"></script>
     <!-- Bootstrap Core CSS -->
@@ -19,8 +19,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <script src="{% static "js/html5shiv.js" %}"></script>
+        <script src="{% static "js/respond.min.js" %}"></script>
     <![endif]-->
 
 </head>
@@ -134,16 +134,21 @@
 		</div><!--/Left Column-->
   
   
-		<!-- Center Column -->
+		<!---- Center Column >
 		<div class="col-sm-6">		
 			<!-- Articles -->
+            <!--显示文章标题和内容的前80个字符-->
 			{% for article in latest_article_list %}
 			<div class="row">
 				<article class="col-xs-12">
 					<h2><a id="article_title", href="/focus/{{ article.id }}">{{ article.title }}</a></h2>
 					<p>{{ article.content|truncatechars_html:80 | safe }}</p>
 				<!-- 	<p><button class="btn btn-default">Read More</button></p>  -->
-					<p class="pull-right"><span class="label label-default">{{ article.column }}</span> <span class="label label-default">tag</span> <span class="label label-default">{{ article.author }}</span></p>
+					<p class="pull-right">
+                        <span class="label label-default">{{ article.column }}</span>
+                        <span class="label label-default">tag</span>
+                        <span class="label label-default">{{ article.author }}</span>
+                    </p>
 					<ul class="list-inline">
 						<li><a href="#">{{ article.pub_date | date:"j M" }}</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-comment"></span> {{ article.comment_num }} Comments</a></li>
@@ -171,6 +176,7 @@
 
 
 	  <!-- Right Column -->
+      <!--登陆表单的现实-->
 	  <div class="col-sm-3">
 			{% if request.user.is_authenticated %}
 			<!-- Form --> 
@@ -178,11 +184,15 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<span class="glyphicon glyphicon-user"></span> 
-						Logged In
+						登陆
 					</h3>
 				</div>
 				<div class="panel-body">					
-					<div class="form-group">hi:{{ user }} <a href="/focus/logout/"><input class="btn btn-default" type="submit" value="Logout" /></a></div>
+					<div class="form-group">hi:{{ user }}
+                        <a href="/focus/logout/">
+                            <input class="btn btn-default" type="submit" value="Logout" />
+                        </a>
+                    </div>
 				</div>
 			</div>
 			{% else %}
